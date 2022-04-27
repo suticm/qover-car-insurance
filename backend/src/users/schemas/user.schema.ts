@@ -7,13 +7,14 @@ export type UserDocument = User & Document;
 export class User {
   @Prop({
     required: true,
+    trim: true,
     unique: true,
   })
   email: string;
 
   @Prop({
     required: true,
-    minlength: 5,
+    trim: true,
   })
   password: string;
 }
