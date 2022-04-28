@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { AuthDto } from './dto/auth.dto';
@@ -34,5 +34,13 @@ export class AuthService {
       email: payload.username,
       access_token: this.jwtService.sign(payload),
     };
+  }
+
+  async signup(user: AuthDto) {
+    try {
+      return await this.usersService.create(user);
+    } catch {
+      throw new ConflictException('User with the same email already exists');
+    }
   }
 }
