@@ -3,11 +3,10 @@ import {
   Get,
   Post,
   Body,
-  HttpException,
-  HttpStatus,
   Param,
   NotFoundException,
   UseGuards,
+  ConflictException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -39,10 +38,7 @@ export class UsersController {
     try {
       return await this.usersService.create(createUserDto);
     } catch {
-      throw new HttpException(
-        'User with the same email already exists',
-        HttpStatus.CONFLICT,
-      );
+      throw new ConflictException('User with the same email already exists');
     }
   }
 }
