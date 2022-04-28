@@ -14,6 +14,14 @@ export class UsersService {
     return this.userModel.find();
   }
 
+  findOne(id: string) {
+    return this.userModel.findById(id);
+  }
+
+  findByEmail(email: string) {
+    return this.userModel.findOne({ email });
+  }
+
   async create(createUserDto: CreateUserDto) {
     const createdUser = new this.userModel(createUserDto);
     createdUser.password = await bcrypt.hash(createdUser.password, 8);
