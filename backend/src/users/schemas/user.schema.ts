@@ -10,6 +10,13 @@ export class User {
     trim: true,
     unique: true,
   })
+  username: string;
+
+  @Prop({
+    required: true,
+    trim: true,
+    unique: true,
+  })
   email: string;
 
   @Prop({
