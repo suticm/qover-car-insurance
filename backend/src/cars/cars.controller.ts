@@ -35,7 +35,7 @@ export class CarsController {
     }
   }
 
-  @Post('/offer')
+  @Post('/offers')
   @UseGuards(JwtStrategy)
   async offer(@Body() carOfferDto: CarOfferDto) {
     try {

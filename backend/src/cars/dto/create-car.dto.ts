@@ -1,4 +1,4 @@
-import { IsBoolean, IsInt, IsNumber, IsString, Min } from 'class-validator';
+import { IsInt, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateCarDto {
   @IsString()
@@ -8,12 +8,9 @@ export class CreateCarDto {
   globalPrice: number;
 
   @IsNumber()
-  universalPrice: number;
+  universalPercentageCoefficient: number;
 
   @IsInt()
   @Min(18)
-  ageRestriction: number;
-
-  @IsBoolean()
-  highRisk: boolean;
+  minAgeRestriction: number;
 }

@@ -5,7 +5,7 @@ export class CarOfferDto {
   driverAge: number;
 
   @IsString()
-  car: string;
+  carManufacturer: string;
 
   @IsInt()
   @Min(5000, { message: 'Sorry! The price of the car is too low!' })

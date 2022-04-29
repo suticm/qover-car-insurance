@@ -29,12 +29,12 @@ export class CarsService {
   }
 
   async offer(carOfferDto: CarOfferDto) {
-    const car = await this.findByManufacturer(carOfferDto.car);
+    const car = await this.findByManufacturer(carOfferDto.carManufacturer);
     if (car) {
-      if (car.highRisk && carOfferDto.driverAge < car.ageRestriction) {
+      if (carOfferDto.driverAge < car.minAgeRestriction) {
         return {
           expected: {
-            driverAge: car.ageRestriction,
+            driverAge: car.minAgeRestriction,
           },
           provided: carOfferDto.driverAge,
           constraints: 'Sorry! We can not accept this particular risk.',
@@ -46,18 +46,19 @@ export class CarsService {
           globalOffer: car.globalPrice.toFixed(2),
           universalOffer: (
             car.globalPrice +
-            car.universalPercentage * carOfferDto.purchasePrice
+            car.universalPercentageCoefficient * carOfferDto.purchasePrice
           ).toFixed(2),
         },
         monthly: {
           globalOffer: (car.globalPrice / 12).toFixed(2),
           universalOffer: (
             (car.globalPrice +
-              car.universalPercentage * carOfferDto.purchasePrice) /
+              car.universalPercentageCoefficient * carOfferDto.purchasePrice) /
             12
           ).toFixed(2),
         },
       };
     }
+    return null;
   }
 }
