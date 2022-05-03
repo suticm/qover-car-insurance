@@ -27,6 +27,6 @@ export class UsersService {
     createdUser.password = await bcrypt.hash(createdUser.password, 8);
     const user = await createdUser.save();
 
-    return new UserDto(user.id, user.email);
+    return new UserDto(user.id, user.email, user.username);
   }
 }

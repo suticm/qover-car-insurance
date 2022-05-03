@@ -10,9 +10,8 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { JwtStrategy } from 'src/auth/strategies/jwt.strategy';
 import { CarsService } from './cars.service';
-import { CarOfferDto } from './dto/car-offer.dto';
+import { CarOfferInputDto } from './dto/car-offer-input.dto';
 import { CreateCarDto } from './dto/create-car.dto';
 
 @Controller('cars')
@@ -36,10 +35,10 @@ export class CarsController {
   }
 
   @Post('/offers')
-  @UseGuards(JwtStrategy)
-  async offer(@Body() carOfferDto: CarOfferDto) {
+  @UseGuards(JwtAuthGuard)
+  async offer(@Body() carOfferInputDto: CarOfferInputDto) {
     try {
-      return await this.carsService.offer(carOfferDto);
+      return await this.carsService.offer(carOfferInputDto);
     } catch {
       throw new BadRequestException();
     }
