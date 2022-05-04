@@ -35,6 +35,8 @@
 
 .login-form {
   border-radius: 1%;
+  box-shadow: 0 2px 2px 0 #cccbcb;
+  background-color: #fff;
 }
 
 textarea:focus,
@@ -109,7 +111,10 @@ input:focus {
   font-weight: 600;
 }
 
-/*border transition  duration-200  cursor-pointer font-normal text-sm  text-white hover:bg-blue-200 hover:text-blue-500*/
+.askForAccessButton:hover {
+  background-color: #fff;
+  color: #1968cf;
+}
 
 .App-link {
   color: #61dafb;

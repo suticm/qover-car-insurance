@@ -15,7 +15,7 @@ function App() {
             <Route path="/login" element={<Login />} />
           </Routes>
           <footer>
-            <p className="footer relative pt-1 border-b-2 border-blue-700 text-center  font-normal  p-8 shadow text-white">
+            <p className="footer relative pt-1 text-center  font-normal  p-8 shadow text-white">
               ® Qover {new Date().getFullYear()}
             </p>
           </footer>
