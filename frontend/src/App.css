@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Roboto';
 }
 
 .App-logo {
@@ -14,15 +15,101 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.12);
 }
+
+.qoverme {
+  width: 51px;
+  height: 10px;
+  font-family: Roboto;
+  font-size: 9px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  color: #fff;
+  margin-left: 8%;
+}
+
+.login-form {
+  border-radius: 1%;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.login-label {
+  font-size: 13px;
+  color: grey;
+}
+
+.login-input {
+  margin-bottom: 5%;
+  padding: 2%;
+  width: 100%;
+  border-color: #317bda;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 2px;
+}
+
+.rememberMe {
+  font-size: 14px;
+  color: grey;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.loginErrorMessage {
+  text-align: center;
+  padding-bottom: 20px;
+  color: red;
+  font-size: 14px;
+}
+
+.forgotPassword {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+  color: #317bda;
+}
+
+.submitLoginButton {
+  cursor: pointer;
+  height: 45px;
+  background-color: #317bda;
+  border-radius: 3px;
+  color: #fff;
+  width: 100%;
+  padding: 2%;
+  font-size: 15px;
+}
+
+.submitLoginButton:hover {
+  background-color: #1968cf;
+}
+
+.askForAccessButton {
+  width: 100%;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  letter-spacing: normal;
+  cursor: pointer;
+  color: white;
+  border-radius: 3px;
+  border: solid 1px #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/*border transition  duration-200  cursor-pointer font-normal text-sm  text-white hover:bg-blue-200 hover:text-blue-500*/
 
 .App-link {
   color: #61dafb;

@@ -1,12 +1,26 @@
-import React from "react";
-import "./App.css";
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import '@fontsource/roboto';
+import './App.css';
+import Login from './components/Login/Login';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Qover Car Insurance</p>
-      </header>
+      <Router>
+        <div className="flex bg-opacity-25 bg-white bg-hero-pattern flex-col h-screen">
+          <header className="App-header text-left ">
+            <span className="qoverme">{'<'} QOVER.ME</span>
+          </header>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+          <footer>
+            <p className="footer relative pt-1 border-b-2 border-blue-700 text-center  font-normal  p-8 shadow text-white">
+              ® Qover {new Date().getFullYear()}
+            </p>
+          </footer>
+        </div>
+      </Router>
     </div>
   );
 }
