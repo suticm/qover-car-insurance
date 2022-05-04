@@ -7,8 +7,12 @@ export class UserDto {
   @IsString()
   email: string;
 
-  constructor(_id: string, email: string) {
+  @IsString()
+  username: string;
+
+  constructor(_id: string, email: string, username: string) {
     this._id = _id;
     this.email = email;
+    this.username = username;
   }
 }

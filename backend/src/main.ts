@@ -8,6 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
 
+  app.setGlobalPrefix('api/v1');
   app.use(helmet());
   app.useGlobalPipes(new ValidationPipe());
 

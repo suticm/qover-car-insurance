@@ -19,19 +19,13 @@ export class Car {
   @Prop({
     required: true,
   })
-  universalPercentage: number;
+  universalPercentageCoefficient: number;
 
   @Prop({
     required: true,
     min: 18,
   })
-  ageRestriction: number;
-
-  @Prop({
-    required: true,
-    default: false,
-  })
-  highRisk: boolean;
+  minAgeRestriction: number;
 }
 
 export const CarSchema = SchemaFactory.createForClass(Car);

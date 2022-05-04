@@ -1,13 +1,12 @@
-import { IsInt, IsString, Min } from 'class-validator';
+import { UniversalOffer } from '../entities/universal-offer.entity';
+import { GlobalOffer } from '../entities/global-offer.entity';
 
 export class CarOfferDto {
-  @IsInt()
-  driverAge: number;
+  globalOffer: GlobalOffer;
+  universalOffer: UniversalOffer;
 
-  @IsString()
-  car: string;
-
-  @IsInt()
-  @Min(5000, { message: 'Sorry! The price of the car is too low!' })
-  purchasePrice: number;
+  constructor(globalOffer: GlobalOffer, universalOffer: UniversalOffer) {
+    this.globalOffer = globalOffer;
+    this.universalOffer = universalOffer;
+  }
 }
