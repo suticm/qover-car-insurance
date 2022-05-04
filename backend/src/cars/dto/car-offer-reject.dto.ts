@@ -1,8 +1,8 @@
 export class CarOfferRejectDto {
-  expectedDriverAge: Number;
-  constraint: String;
+  expectedDriverAge: number;
+  constraint: string;
 
-  constructor(constraint: String, expectedDriverAge: Number) {
+  constructor(constraint: string, expectedDriverAge: number) {
     this.constraint = constraint;
     this.expectedDriverAge = expectedDriverAge;
   }

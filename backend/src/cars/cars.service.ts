@@ -5,9 +5,9 @@ import { CreateCarDto } from './dto/create-car.dto';
 import { Car, CarDocument } from './schemas/car.schema';
 import { CarOfferInputDto } from './dto/car-offer-input.dto';
 import { CarOfferRejectDto } from './dto/car-offer-reject.dto';
-import { CarOffer } from './dto/car-offer.dto';
-import { GlobalOffer } from './types/global-offer.type';
-import { UniversalOffer } from './types/universal-offer.type';
+import { CarOfferDto } from './dto/car-offer.dto';
+import { GlobalOffer } from './entities/global-offer.entity';
+import { UniversalOffer } from './entities/universal-offer.entity';
 
 @Injectable()
 export class CarsService {
@@ -42,11 +42,21 @@ export class CarsService {
         );
       }
 
-      return new CarOffer(
-        new GlobalOffer(car.globalPrice, 90, 1000000, 5000, 1000, 1),
+      return new CarOfferDto(
+        new GlobalOffer(
+          +car.globalPrice.toFixed(2),
+          90,
+          1000000,
+          5000,
+          1000,
+          1,
+        ),
         new UniversalOffer(
-          car.globalPrice +
-            car.universalPercentageCoefficient * carOfferInputDto.purchasePrice,
+          calculateUniversalOfferPrice(
+            car.globalPrice,
+            car.universalPercentageCoefficient,
+            carOfferInputDto.purchasePrice,
+          ),
           180,
           3000000,
           10000,
@@ -57,4 +67,14 @@ export class CarsService {
     }
     return null;
   }
+}
+
+function calculateUniversalOfferPrice(
+  globalPrice: number,
+  universalPercentageCoefficient: number,
+  purchasePrice: number,
+) {
+  const universalPrice =
+    purchasePrice * universalPercentageCoefficient + globalPrice;
+  return +universalPrice.toFixed(2);
 }

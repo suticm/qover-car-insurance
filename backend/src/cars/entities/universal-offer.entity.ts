@@ -1,3 +1,3 @@
-import { Offer } from './offer.type';
+import { Offer } from './offer.entity';
 
 export class UniversalOffer extends Offer {}

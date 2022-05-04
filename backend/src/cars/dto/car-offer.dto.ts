@@ -1,7 +1,7 @@
-import { UniversalOffer } from '../types/universal-offer.type';
-import { GlobalOffer } from '../types/global-offer.type';
+import { UniversalOffer } from '../entities/universal-offer.entity';
+import { GlobalOffer } from '../entities/global-offer.entity';
 
-export class CarOffer {
+export class CarOfferDto {
   globalOffer: GlobalOffer;
   universalOffer: UniversalOffer;
 
