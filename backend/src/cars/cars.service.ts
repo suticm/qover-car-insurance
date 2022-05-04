@@ -65,7 +65,7 @@ export class CarsService {
         ),
       );
     }
-    return null;
+    return new CarOfferRejectDto('Manufacturer does not exist');
   }
 }
 
