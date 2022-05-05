@@ -1,4 +1,4 @@
-export interface Car {
+export interface CarType {
   _id: string;
   manufacturer: string;
   globalPrice: number;

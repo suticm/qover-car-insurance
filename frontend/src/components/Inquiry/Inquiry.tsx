@@ -1,26 +1,34 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import InquiryService from '../../services/InquiryService';
-import { Car } from '../../types/Car';
-
-type InquiryInput = {
-  driverAge: number;
-  carManufacturer: string;
-  purchasePrice: string;
-};
+import { CarType } from '../../types/CarType';
+import { InquiryType } from '../../types/InquiryType';
+import { OfferType } from '../../types/OfferType';
 
 // eslint-disable-next-line react/function-component-definition
 export const Inquiry: FunctionComponent = () => {
-  const { register, handleSubmit } = useForm<InquiryInput>();
-  const [cars, setCars] = useState<Car[]>([]);
+  const { register, handleSubmit } = useForm<InquiryType>();
+  const [cars, setCars] = useState<CarType[]>([]);
+  const [constraint, setConstraint] = useState<string>();
 
-  const handleInquiry: SubmitHandler<InquiryInput> = (data) => {
-    const inquryData = data;
-    console.log(inquryData);
+  const handleInquiry: SubmitHandler<InquiryType> = (data) => {
+    const inquiryData = data;
+    InquiryService.getOffer(
+      +inquiryData.driverAge,
+      inquiryData.carManufacturer,
+      +inquiryData.purchasePrice,
+    )
+      .then((offer: OfferType) => {
+        console.log(offer);
+        if (offer.constraint) {
+          setConstraint(offer.constraint);
+        } else setConstraint('');
+      })
+      .catch((reason: any) => setConstraint(reason.response.data.message[0]));
   };
 
   const fetchData = () => {
-    InquiryService.getCars().then((data: Car[]) => setCars(data));
+    InquiryService.getCars().then((data: CarType[]) => setCars(data));
   };
 
   useEffect(() => {
@@ -32,14 +40,13 @@ export const Inquiry: FunctionComponent = () => {
       <div className=" mx-auto my-auto ">
         <div className="inquiry">
           <form onSubmit={handleSubmit(handleInquiry)} className="inquiryForm">
-            <div className="py-3">
+            <div className="py-3 inquiryFormField">
               <label htmlFor="driverAge" className="inquiryLabel">
                 Age of the driver
               </label>
               <input
                 type="number"
                 id="driverAge"
-                min={18}
                 step={1}
                 className="border inline-block inquiryInput"
                 data-bs-toggle="tooltip"
@@ -49,34 +56,41 @@ export const Inquiry: FunctionComponent = () => {
                 required
               />
             </div>
-            <div className="py-3">
+            <div className="py-3 inquiryFormField">
               <label htmlFor="car" className="inquiryLabel">
                 Car
               </label>
               <select
                 id="car"
                 className="inquiryInput"
+                required
                 {...register('carManufacturer')}
               >
-                {cars?.map((c: Car) => (
+                <option value="" disabled selected hidden>
+                  Choose Car Manufacturer...
+                </option>
+                {cars?.map((c: CarType) => (
                   <option key={c._id} value={c.manufacturer}>
                     {c.manufacturer}
                   </option>
                 ))}
               </select>
             </div>
-            <div className="py-3">
+            <div className="py-3 inquiryFormField">
               <label htmlFor="purchasePrice" className="inquiryLabel">
                 Purchase price
               </label>
               <input
                 id="purchasePrice"
                 type="number"
-                min={5000}
                 className="border inquiryInput"
                 {...register('purchasePrice')}
                 required
               />
+              <span className="currency">€</span>
+            </div>
+            <div className="constraint h-5">
+              {constraint && <div>{constraint}</div>}
             </div>
             <div className="pt-6">
               <button type="submit" className="getPriceButton">

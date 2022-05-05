@@ -10,6 +10,24 @@ const InquiryService = {
       })
       .then((res) => res.data);
   },
+
+  getOffer: (
+    driverAge: number,
+    carManufacturer: string,
+    purchasePrice: number,
+  ): any => {
+    return axios
+      .post(
+        'http://localhost:3000/api/v1/cars/offers',
+        { driverAge, carManufacturer, purchasePrice },
+        {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem('user')!}`,
+          },
+        },
+      )
+      .then((res) => res.data);
+  },
 };
 
 export default InquiryService;
