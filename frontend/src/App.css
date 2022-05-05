@@ -116,9 +116,56 @@ input:focus {
   color: #1968cf;
 }
 
+.inquiryBackground {
+  background-image: url('./assets/inquirybg.png');
+}
+
+.inquiry {
+  background-color: #fff;
+  border-radius: 1%;
+  width: 800px;
+}
+
+.inquiryForm {
+  margin: 0 50px;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.inquiryLabel {
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+}
+
+.inquiryInput {
+  width: 250px;
+  height: 40px;
+  border-radius: 2px;
+  border: solid 1px rgba(72, 72, 72, 0.2);
+  padding: 10px;
+}
+
 .App-link {
   color: #61dafb;
 }
+
+.getPriceButton {
+  cursor: pointer;
+  color: #fff;
+  background-color: #31cfda;
+  border-radius: 5px;
+  border: solid 1px #31cfda;
+  width: 163px;
+  height: 50px;
+  font-size: 16px;
+}
+
+.getPriceButton:hover {
+  background-color: #21c1cc;
+}
+
+/*drop-shadow cursor-pointer mt-8 hover:bg-blue-600 duration-300 text-white  py-2.5 text-center*/
 
 @keyframes App-logo-spin {
   from {

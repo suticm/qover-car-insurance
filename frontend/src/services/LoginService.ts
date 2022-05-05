@@ -8,7 +8,9 @@ const LoginService = {
         password,
         rememberMe,
       })
-      .then((res) => window.localStorage.setItem('user', res.data.token)),
+      .then((res) =>
+        window.localStorage.setItem('user', res.data.access_token),
+      ),
 };
 
 export default LoginService;
