@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { FunctionComponent, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -98,8 +99,8 @@ export const Login: FunctionComponent = () => {
         <div className="py-5 text-center whitespace-nowrap">
           <button className="askForAccessButton">
             <span className="inline-block mx-11">
-              Dont have an account?
-              <u> Ask access</u>
+              Don't have an account
+              <u> Ask for access</u>
             </span>
           </button>
         </div>

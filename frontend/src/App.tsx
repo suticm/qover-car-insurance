@@ -4,6 +4,7 @@ import './App.css';
 import Login from './components/Login/Login';
 import { Inquiry } from './components/Inquiry/Inquiry';
 import ProtectedRoute from './guards/ProtectedRoute';
+import { Offer } from './components/Offer/Offer';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<Inquiry />} />
+              <Route path="/offer" element={<Offer />} />
             </Route>
           </Routes>
           <footer>

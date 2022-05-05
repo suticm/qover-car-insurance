@@ -1,5 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import InquiryService from '../../services/InquiryService';
 import { CarType } from '../../types/CarType';
 import { InquiryType } from '../../types/InquiryType';
@@ -7,6 +8,8 @@ import { OfferType } from '../../types/OfferType';
 
 // eslint-disable-next-line react/function-component-definition
 export const Inquiry: FunctionComponent = () => {
+  const navigate = useNavigate();
+
   const { register, handleSubmit } = useForm<InquiryType>();
   const [cars, setCars] = useState<CarType[]>([]);
   const [constraint, setConstraint] = useState<string>();
@@ -18,11 +21,14 @@ export const Inquiry: FunctionComponent = () => {
       inquiryData.carManufacturer,
       +inquiryData.purchasePrice,
     )
-      .then((offer: OfferType) => {
-        console.log(offer);
-        if (offer.constraint) {
-          setConstraint(offer.constraint);
-        } else setConstraint('');
+      .then((response: OfferType) => {
+        console.log(response);
+        if (!response.constraint) {
+          setConstraint('');
+          navigate('/offer', { state: response });
+        } else {
+          setConstraint(response.constraint);
+        }
       })
       .catch((reason: any) => setConstraint(reason.response.data.message[0]));
   };

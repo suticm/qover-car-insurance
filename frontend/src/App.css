@@ -196,7 +196,43 @@ input:focus {
   font-weight: 500;
 }
 
-/*drop-shadow cursor-pointer mt-8 hover:bg-blue-600 duration-300 text-white  py-2.5 text-center*/
+.offer {
+  background-image: url('./assets/offer-bg.png');
+  background-repeat: no-repeat;
+  padding: 15px 0;
+}
+
+.card {
+  background-color: #31cfda;
+}
+
+.separationline {
+  border-color: #29c1cc;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 2px;
+}
+
+.cardHeaderGlobal {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.comparisonTable {
+  color: #31cfda;
+  font-size: 1px;
+}
+
+/*text-primary text-center font-semibold text-2xl block mb-4*/
+
+.selectPlanHeader {
+  color: #fff;
+  font-size: 28px;
+  margin-bottom: 50px;
+}
 
 @keyframes App-logo-spin {
   from {
