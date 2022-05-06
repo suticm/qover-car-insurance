@@ -7,7 +7,6 @@ function ProtectedRoute() {
     const parsedToken: any = jwtDecode(accessToken);
     if (parsedToken.exp * 1000 < Date.now()) {
       window.localStorage.clear();
-      console.log('back to login - token not valid');
       return <Navigate to="/login" />;
     }
     return <Outlet />;

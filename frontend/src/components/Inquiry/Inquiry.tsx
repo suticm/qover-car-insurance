@@ -22,7 +22,6 @@ export const Inquiry: FunctionComponent = () => {
       +inquiryData.purchasePrice,
     )
       .then((response: OfferType) => {
-        console.log(response);
         if (!response.constraint) {
           setConstraint('');
           navigate('/offer', { state: response });
