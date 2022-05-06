@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 axios.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err.response.status === 401) {
+    if (err.response.status === 401 && window.location.pathname !== '/login') {
       localStorage.clear();
       window.location.reload();
     } else if (err.response.status >= 500) {

@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo-white.svg';
 import UserService from '../../services/UserService';
+import { getAccessToken } from '../../utils';
 
 type LoginInput = {
   email: string;
@@ -19,7 +20,7 @@ export const Login: FunctionComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (window.localStorage.user) {
+    if (getAccessToken()) {
       navigate('/');
     }
   }, [navigate]);
