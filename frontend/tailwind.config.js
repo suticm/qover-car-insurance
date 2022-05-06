@@ -3,11 +3,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cyan: '#fdf8f6',
-        'login-bg': '#fdf8f6',
+        primary: '#31cfda',
       },
       backgroundImage: {
-        'hero-pattern': 'linear-gradient(122deg, #317bda -6%, #33c3c8);',
+        main: 'linear-gradient(122deg, #317bda -6%, #33c3c8);',
+        offer: "url('/src/assets/offer-background.svg')",
       },
     },
   },
