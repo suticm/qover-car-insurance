@@ -10,19 +10,21 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <div className="flex bg-opacity-25 bg-white bg-hero-pattern flex-col h-screen">
+        <div className="flex bg-opacity-25 bg-main flex-col h-screen justify-between">
           <header className="App-header text-left ">
             <span className="qoverme">{'<'} QOVER.ME</span>
           </header>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<Inquiry />} />
-              <Route path="/offer" element={<Offer />} />
-            </Route>
-          </Routes>
+          <div className="h-full">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<Inquiry />} />
+                <Route path="/offer" element={<Offer />} />
+              </Route>
+            </Routes>
+          </div>
           <footer>
-            <p className="footer relative pt-1 text-center  font-normal  p-8 shadow text-white">
+            <p className="relative py-3 text-white">
               ® Qover {new Date().getFullYear()}
             </p>
           </footer>

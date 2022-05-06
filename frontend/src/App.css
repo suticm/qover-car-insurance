@@ -197,36 +197,31 @@ input:focus {
 }
 
 .offer {
-  background-image: url('./assets/offer-bg.png');
-  background-repeat: no-repeat;
-  padding: 15px 0;
+  background-color: #f6f6f6;
+  padding-top: 60px;
 }
 
-.card {
+.selectedCard {
   background-color: #31cfda;
 }
 
-.separationline {
-  border-color: #29c1cc;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-width: 2px;
+.card {
+  background-color: #fff;
+  color: #484848;
 }
 
-.cardHeaderGlobal {
-  display: block;
-  font-size: 24px;
-  font-weight: bold;
-  padding-bottom: 10px;
-}
-
-.comparisonTable {
+.comparisonSection {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
   color: #31cfda;
-  font-size: 1px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-top: 30px;
+  cursor: pointer;
 }
-
-/*text-primary text-center font-semibold text-2xl block mb-4*/
 
 .selectPlanHeader {
   color: #fff;

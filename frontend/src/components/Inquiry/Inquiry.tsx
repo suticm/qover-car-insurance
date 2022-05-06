@@ -34,6 +34,10 @@ export const Inquiry: FunctionComponent = () => {
   };
 
   const fetchData = () => {
+    // if (tokenexiprisa < Date.now) {
+    //   localStorage.clear
+    //   navigate("/")
+    // }
     InquiryService.getCars().then((data: CarType[]) => setCars(data));
   };
 
@@ -42,7 +46,7 @@ export const Inquiry: FunctionComponent = () => {
   }, []);
 
   return (
-    <div className="inquiryBackground flex flex-grow sm:py-9">
+    <div className="inquiryBackground flex flex-grow sm:py-9 h-full">
       <div className=" mx-auto my-auto ">
         <div className="inquiry">
           <form onSubmit={handleSubmit(handleInquiry)} className="inquiryForm">
