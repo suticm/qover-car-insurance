@@ -19,19 +19,15 @@ function Card({
     <div
       className={`${
         selected ? 'selectedCard' : 'card'
-      } max-w-sm py-2.5 rounded w-64 sm:w-full`}
-      style={{ boxShadow: '0px 4px 10px -2px rgba(0,0,0,0.4)' }}
+      } w-64 sm:w-full cardUniversal`}
     >
-      <h2 className="mb-4 mt-2 text-lg font-bold">{title}</h2>
+      <h2 className="cardHeader text-lg">{title}</h2>
       <div
         className={`h-24 flex flex-col align-center justify-center px-16 ${
-          selected ? 'text-white' : 'text-primary'
+          selected
+            ? 'text-white selectedPriceCardSection'
+            : 'text-primary priceCardSection'
         }`}
-        style={{
-          backgroundColor: selected ? 'rgba(255, 255, 255, 0.15)' : '#f5fdfe',
-          borderTop: '2px solid #5b72891A',
-          borderBottom: '2px solid #5b72891A',
-        }}
       >
         <div className="flex items-start justify-center gap-1">
           <h1 className="text-3xl font-bold">
@@ -46,39 +42,24 @@ function Card({
           {`${isMonthly ? 'monthly' : 'YEARLY'} INCL. taxes`.toUpperCase()}
         </p>
       </div>
-      <div
-        className="py-4 px-5 text-xs"
-        style={{ borderBottom: '2px solid #5b72891A' }}
-      >
+      <div className="py-4 px-5 text-xs bottomBorder">
         <b>Maximum duration travel</b> of{' '}
         <b>{offer.maximumDurationTravel.toLocaleString('nl-BE')} days</b>
       </div>
-      <div
-        className="py-4 px-5 text-xs"
-        style={{ borderBottom: '2px solid #5b72891A' }}
-      >
+      <div className="py-4 px-5 text-xs bottomBorder">
         <b>Medical expenses reimbursement</b> up to{' '}
         <b>{offer.medicalexpensesReimbursement.toLocaleString('nl-BE')} €</b>
       </div>
-      <div
-        className="py-4 px-5 text-xs"
-        style={{ borderBottom: '2px solid #5b72891A' }}
-      >
+      <div className="py-4 px-5 text-xs bottomBorder">
         <b>Personal assistance abroad</b> up to{' '}
         <b>{offer.personalAssistanceAbroad.toLocaleString('nl-BE')} €</b>
       </div>
-      <div
-        className="py-4 px-5 text-xs"
-        style={{ borderBottom: '2px solid #5b72891A' }}
-      >
+      <div className="py-4 px-5 text-xs bottomBorder">
         <b>Travel assistance abroad</b> up to{' '}
         <b>{offer.travelAssistanceAbroad.toLocaleString('nl-BE')} €</b> per
         insured per travel
       </div>
-      <div
-        className="py-4 px-5 text-xs"
-        style={{ borderBottom: '2px solid #5b72891A' }}
-      >
+      <div className="py-4 px-5 text-xs bottomBorder">
         <b>
           Coverage duration: {offer.coverageDuration.toLocaleString('nl-BE')}{' '}
           year

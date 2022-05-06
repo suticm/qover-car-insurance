@@ -12,6 +12,7 @@ axios.interceptors.response.use(
       localStorage.clear();
       window.location.reload();
     } else if (err.response.status >= 500) {
+      // TODO: Use better notification system - toast messages
       alert('Something went wrong!');
     }
     return Promise.reject(err);
