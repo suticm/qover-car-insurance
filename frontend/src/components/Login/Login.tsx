@@ -3,7 +3,7 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo-white.svg';
-import LoginService from '../../services/LoginService';
+import UserService from '../../services/UserService';
 
 type LoginInput = {
   email: string;
@@ -26,11 +26,7 @@ export const Login: FunctionComponent = () => {
 
   const handleLogin: SubmitHandler<LoginInput> = (data) => {
     const loginData = data;
-    LoginService.login(
-      loginData.email,
-      loginData.password,
-      loginData.rememberMe,
-    )
+    UserService.login(loginData.email, loginData.password, loginData.rememberMe)
       .then(() => {
         setIsUnauthorized(false);
         navigate('/');

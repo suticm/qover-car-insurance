@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import InquiryService from '../../services/InquiryService';
+import CarService from '../../services/CarService';
 import { CarType } from '../../types/CarType';
 import { InquiryType } from '../../types/InquiryType';
 import { OfferType } from '../../types/OfferType';
@@ -16,7 +16,7 @@ export const Inquiry: FunctionComponent = () => {
 
   const handleInquiry: SubmitHandler<InquiryType> = (data) => {
     const inquiryData = data;
-    InquiryService.getOffer(
+    CarService.getOffer(
       +inquiryData.driverAge,
       inquiryData.carManufacturer,
       +inquiryData.purchasePrice,
@@ -40,7 +40,7 @@ export const Inquiry: FunctionComponent = () => {
   };
 
   const fetchData = () => {
-    InquiryService.getCars().then((data: CarType[]) => setCars(data));
+    CarService.getCars().then((data: CarType[]) => setCars(data));
   };
 
   useEffect(() => {
