@@ -30,14 +30,16 @@ export const Inquiry: FunctionComponent = () => {
           setConstraint(response.constraint);
         }
       })
-      .catch((reason: any) => setConstraint(reason.response.data.message[0]));
+      .catch((reason: any) => {
+        if (reason.response.status === 401) {
+          setConstraint(reason.response.data.message);
+        } else {
+          setConstraint(reason.response.data.message[0]);
+        }
+      });
   };
 
   const fetchData = () => {
-    // if (tokenexiprisa < Date.now) {
-    //   localStorage.clear
-    //   navigate("/")
-    // }
     InquiryService.getCars().then((data: CarType[]) => setCars(data));
   };
 
@@ -57,7 +59,8 @@ export const Inquiry: FunctionComponent = () => {
               <input
                 type="number"
                 id="driverAge"
-                step={1}
+                min={0}
+                max={100}
                 className="border inline-block inquiryInput"
                 data-bs-toggle="tooltip"
                 data-bs-placement="right"

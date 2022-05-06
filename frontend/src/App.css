@@ -203,6 +203,7 @@ input:focus {
 
 .selectedCard {
   background-color: #31cfda;
+  color: #fff;
 }
 
 .card {

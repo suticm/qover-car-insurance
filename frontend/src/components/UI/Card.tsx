@@ -18,7 +18,7 @@ function Card({
   return (
     <div
       className={`${
-        selected ? 'selectedCard text-white' : 'card'
+        selected ? 'selectedCard' : 'card'
       } max-w-sm py-2.5 rounded w-64 sm:w-full`}
       style={{ boxShadow: '0px 4px 10px -2px rgba(0,0,0,0.4)' }}
     >
