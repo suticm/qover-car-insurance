@@ -15,7 +15,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CarsService } from './cars.service';
 import { CarOfferInputDto } from './dto/car-offer-input.dto';
 import { CreateCarDto } from './dto/create-car.dto';
