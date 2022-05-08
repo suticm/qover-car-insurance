@@ -91,6 +91,7 @@ export const Inquiry: FunctionComponent = () => {
               <input
                 id="purchasePrice"
                 type="number"
+                min={0}
                 className="border inquiryInput"
                 {...register('purchasePrice')}
                 required
