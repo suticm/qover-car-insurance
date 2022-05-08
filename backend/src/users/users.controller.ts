@@ -47,12 +47,8 @@ export class UsersController {
   })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  async findOne(@Param('id') id: string) {
-    try {
-      return await this.usersService.findOne(id);
-    } catch {
-      throw new NotFoundException();
-    }
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOne(id);
   }
 
   @Post()
@@ -67,11 +63,7 @@ export class UsersController {
   })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  async create(@Body() createUserDto: CreateUserDto) {
-    try {
-      return await this.usersService.create(createUserDto);
-    } catch {
-      throw new ConflictException('User with the same email already exists');
-    }
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
   }
 }

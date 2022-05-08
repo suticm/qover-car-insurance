@@ -21,8 +21,8 @@ export class AuthController {
     description: 'Username or password are invalid.',
   })
   @UseGuards(LocalAuthGuard)
-  async login(@Body() loginDto: LoginDto) {
-    return await this.authService.login(loginDto);
+  login(@Body() loginDto: LoginDto) {
+    return this.authService.login(loginDto);
   }
 
   @Post('/signup')
@@ -31,7 +31,7 @@ export class AuthController {
     status: 201,
     description: 'The user has been signed up successfully.',
   })
-  async signup(@Body() signupDto: SignupDto) {
-    return await this.authService.signup(signupDto);
+  signup(@Body() signupDto: SignupDto) {
+    return this.authService.signup(signupDto);
   }
 }

@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
@@ -14,7 +14,7 @@ export class AuthService {
   ) {}
 
   async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.usersService.findByEmail(email);
+    const user = await this.usersService.findByEmail(email).exec();
     if (user) {
       const isValid = await bcrypt.compare(pass, user.password);
       if (isValid) {
@@ -25,8 +25,10 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto) {
-    const user = await this.usersService.findByEmail(loginDto.email);
-    if (!user) return null;
+    const user = await this.usersService.findByEmail(loginDto.email).exec();
+    if (!user) {
+      return null;
+    }
 
     const payload = {
       email: user.email,
@@ -40,11 +42,7 @@ export class AuthService {
     );
   }
 
-  async signup(signupDto: SignupDto) {
-    try {
-      return await this.usersService.create(signupDto);
-    } catch {
-      throw new ConflictException('User with the same email already exists');
-    }
+  signup(signupDto: SignupDto) {
+    return this.usersService.create(signupDto);
   }
 }

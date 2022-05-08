@@ -30,11 +30,7 @@ export const Inquiry: FunctionComponent = () => {
         }
       })
       .catch((reason: any) => {
-        if (reason.response.status === 401) {
-          setConstraint(reason.response.data.message);
-        } else {
-          setConstraint(reason.response.data.message[0]);
-        }
+        setConstraint(reason.response.data);
       });
   };
 

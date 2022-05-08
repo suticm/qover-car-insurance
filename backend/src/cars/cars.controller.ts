@@ -45,12 +45,8 @@ export class CarsController {
   })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  async create(@Body() createCarDto: CreateCarDto) {
-    try {
-      return await this.carsService.create(createCarDto);
-    } catch {
-      throw new ConflictException('Manufacturer already exists');
-    }
+  create(@Body() createCarDto: CreateCarDto) {
+    return this.carsService.create(createCarDto);
   }
 
   @Post('/offers')
@@ -61,12 +57,8 @@ export class CarsController {
   })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  async offer(@Body() carOfferInputDto: CarOfferInputDto) {
-    try {
-      return await this.carsService.offer(carOfferInputDto);
-    } catch {
-      throw new BadRequestException();
-    }
+  offer(@Body() carOfferInputDto: CarOfferInputDto) {
+    return this.carsService.offer(carOfferInputDto);
   }
 
   @Get(':id')
@@ -81,11 +73,7 @@ export class CarsController {
   })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  async findOne(@Param('id') id: string) {
-    try {
-      return await this.carsService.findOne(id);
-    } catch {
-      throw new NotFoundException();
-    }
+  findOne(@Param('id') id: string) {
+    return this.carsService.findOne(id);
   }
 }
