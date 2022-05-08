@@ -71,7 +71,7 @@ describe('CarsController', () => {
         .set('Authorization', `Bearer ${token}`);
 
       expect(response.status).toBe(201);
-      expect(response.body).toMatchObject(createCarDto);
+      expect(response.body).toMatchObject(carStub());
     });
   });
 });

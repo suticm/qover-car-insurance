@@ -2,7 +2,7 @@ export class Offer {
   priceYearly: number;
   priceMonthly: number;
   maximumDurationTravel: number;
-  medicalexpensesReimbursement: number;
+  medicalExpensesReimbursement: number;
   personalAssistanceAbroad: number;
   travelAssistanceAbroad: number;
   coverageDuration: number;
@@ -10,7 +10,7 @@ export class Offer {
   constructor(
     priceYearly: number,
     maximumDurationTravel: number,
-    medicalexpensesReimbursement: number,
+    medicalExpensesReimbursement: number,
     personalAssistanceAbroad: number,
     travelAssistanceAbroad: number,
     coverageDuration: number,
@@ -18,7 +18,7 @@ export class Offer {
     this.priceYearly = priceYearly;
     this.priceMonthly = +(priceYearly / 12).toFixed(2);
     this.maximumDurationTravel = maximumDurationTravel;
-    this.medicalexpensesReimbursement = medicalexpensesReimbursement;
+    this.medicalExpensesReimbursement = medicalExpensesReimbursement;
     this.personalAssistanceAbroad = personalAssistanceAbroad;
     this.travelAssistanceAbroad = travelAssistanceAbroad;
     this.coverageDuration = coverageDuration;

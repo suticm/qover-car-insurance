@@ -2,6 +2,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CarsController } from '../cars.controller';
 import { CarsService } from '../cars.service';
+import { CarDto } from '../dto/car.dto';
 import { CreateCarDto } from '../dto/create-car.dto';
 import { Car } from '../schemas/car.schema';
 import { carStub } from './stubs/car.stub';
@@ -45,7 +46,7 @@ describe('CarsController', () => {
 
   describe('createCar', () => {
     describe('when create is called', () => {
-      let car: Car;
+      let car: CarDto;
       let createCarDto: CreateCarDto;
 
       beforeEach(async () => {
