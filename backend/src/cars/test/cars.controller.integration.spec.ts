@@ -36,7 +36,7 @@ describe('CarsController', () => {
       .post('/auth/login')
       .send({ email: 'test@test.com', password: 'test' });
 
-    token = loginResponse.body.access_token;
+    token = loginResponse.body.accessToken;
   });
 
   afterAll(() => {
