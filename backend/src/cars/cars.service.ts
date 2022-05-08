@@ -8,6 +8,8 @@ import { CarOfferRejectDto } from './dto/car-offer-reject.dto';
 import { CarOfferDto } from './dto/car-offer.dto';
 import { GlobalOffer } from './entities/global-offer.entity';
 import { UniversalOffer } from './entities/universal-offer.entity';
+import { carOfferConstants } from '../constants';
+import { CarDto } from './dto/car.dto';
 
 @Injectable()
 export class CarsService {
@@ -29,43 +31,50 @@ export class CarsService {
     const car = new this.carModel(createCarDto);
     const createdCar = await car.save();
 
-    return createdCar;
+    return new CarDto(
+      createdCar.id,
+      createdCar.manufacturer,
+      createdCar.globalPrice,
+      createdCar.universalPercentageCoefficient,
+      createdCar.minAgeRestriction,
+    );
   }
 
   async offer(carOfferInputDto: CarOfferInputDto) {
     const car = await this.findByManufacturer(carOfferInputDto.carManufacturer);
-    if (car) {
-      if (carOfferInputDto.driverAge < car.minAgeRestriction) {
-        return new CarOfferRejectDto(
-          'Sorry! We can not accept this particular risk.',
-          car.minAgeRestriction,
-        );
-      }
+    if (!car) {
+      return new CarOfferRejectDto('Manufacturer does not exist');
+    }
 
-      return new CarOfferDto(
-        new GlobalOffer(
-          +car.globalPrice.toFixed(2),
-          90,
-          1000000,
-          5000,
-          1000,
-          1,
-        ),
-        new UniversalOffer(
-          calculateUniversalOfferPrice(
-            car.globalPrice,
-            car.universalPercentageCoefficient,
-            carOfferInputDto.purchasePrice,
-          ),
-          180,
-          3000000,
-          10000,
-          2500,
-          1,
-        ),
+    if (carOfferInputDto.driverAge < car.minAgeRestriction) {
+      return new CarOfferRejectDto(
+        'Sorry! We can not accept this particular risk.',
+        car.minAgeRestriction,
       );
     }
-    return new CarOfferRejectDto('Manufacturer does not exist');
+
+    return new CarOfferDto(
+      new GlobalOffer(
+        +car.globalPrice.toFixed(2),
+        carOfferConstants.maximumDurationTravel,
+        carOfferConstants.medicalExpensesReimbursement,
+        carOfferConstants.personalAssistanceAbroad,
+        carOfferConstants.travelAssistanceAbroad,
+        carOfferConstants.coverageDuration,
+      ),
+      new UniversalOffer(
+        calculateUniversalOfferPrice(
+          car.globalPrice,
+          car.universalPercentageCoefficient,
+          carOfferInputDto.purchasePrice,
+        ),
+        carOfferConstants.maximumDurationTravel,
+        carOfferConstants.medicalExpensesReimbursement,
+        carOfferConstants.personalAssistanceAbroad,
+        carOfferConstants.travelAssistanceAbroad,
+        carOfferConstants.coverageDuration,
+      ),
+    );
   }
 }
 

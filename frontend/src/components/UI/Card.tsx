@@ -48,7 +48,7 @@ function Card({
       </div>
       <div className="py-4 px-5 text-xs bottomBorder">
         <b>Medical expenses reimbursement</b> up to{' '}
-        <b>{offer.medicalexpensesReimbursement.toLocaleString('nl-BE')} €</b>
+        <b>{offer.medicalExpensesReimbursement.toLocaleString('nl-BE')} €</b>
       </div>
       <div className="py-4 px-5 text-xs bottomBorder">
         <b>Personal assistance abroad</b> up to{' '}

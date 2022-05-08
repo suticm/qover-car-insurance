@@ -12,7 +12,7 @@ const UserService = {
         password,
         rememberMe,
       })
-      .then((res) => setAccessToken(res.data.access_token)),
+      .then((res) => setAccessToken(res.data.accessToken)),
 };
 
 export default UserService;
