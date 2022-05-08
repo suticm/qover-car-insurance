@@ -5,6 +5,7 @@ import Login from './components/Login/Login';
 import { Inquiry } from './components/Inquiry/Inquiry';
 import ProtectedRoute from './guards/ProtectedRoute';
 import { Offer } from './components/Offer/Offer';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/" element={<Inquiry />} />
                 <Route path="/offer" element={<Offer />} />
               </Route>
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
           <footer>

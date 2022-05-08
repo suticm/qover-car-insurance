@@ -44,6 +44,18 @@ input:focus {
   outline: none;
 }
 
+.not-found-img {
+  width: 40%;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+.center {
+  margin: auto;
+  width: max-content;
+  padding: 10% 0;
+}
+
 .login-label {
   font-size: 13px;
   color: grey;
@@ -250,7 +262,7 @@ input:focus {
   font-size: 14px;
   font-weight: bold;
   text-decoration: underline;
-  margin-top: 30px;
+  margin-top: 2%;
   cursor: pointer;
 }
 
