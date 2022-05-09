@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  car-insurance:
+    restart: always
+    container_name: car-insurance
+    build: .
+    ports:
+      - '${PORT}:3000'
+    environment:
+      - PORT=${PORT}
+      - MONGO_URL=${MONGO_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+    depends_on:
+      - mongodb
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:
