@@ -19,7 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "injectCars": "node -r dotenv/config src/scripts/defaultCars.js dotenv_config_path=dev.env "
+    "injectData": "node -r dotenv/config src/scripts/injectData.js dotenv_config_path=dev.env "
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",

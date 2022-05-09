@@ -1,8 +1,29 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+console.log(process.env.MONGO_URL);
 
 mongoose
   .connect(process.env.MONGO_URL)
+  .then(async () => {
+    console.log('inserting user...');
+    mongoose.connection.db
+      .collection('users')
+      .insertOne({
+        username: 'Qover',
+        email: 'Qover',
+        password: await bcrypt.hash('ninja', 8),
+      })
+      .then(() => {
+        console.log(
+          'user successfully inserted.\nusername: Qover\npassword: ninja',
+        );
+      })
+      .catch(() => {
+        console.log('failed to insert user');
+      });
+  })
   .then(() => {
     console.log('inserting cars into db...');
     mongoose.connection.db
@@ -62,8 +83,7 @@ mongoose
       })
       .finally(() => process.exit(0));
   })
-  .catch((e) => {
-    console.log(e);
+  .catch(() => {
     console.log('mongoose connection failed');
     process.exit(1);
   });
