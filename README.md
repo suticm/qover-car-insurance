@@ -1,28 +1,45 @@
-# qover-car-insurance
+# Qover Car Insurance
 
 ### Prerequisites
-- nodejs (v16)
+- nodejs
 - mongodb
 - docker
 
-### Usage
+### Docker
 
-1. Clone repo  
-2. Install dependencies in each folder (backend && frontend)
+1. Start server
 ```sh
-$ npm install
+$ cd backend
+$ docker-compose --env-file ./dev.env up -d --build
 ```
-3. By preference, you can insert default data in db by running a script
+2. Inject default data in db
 ```sh
 $ npm run injectData
 ```
-4. Start server
+3. Start client
 ```sh
-qover-car-insurance/backend/
+$ cd ../frontend
+$ npm start
+```
+
+
+### Without docker - usage
+
+1. Install dependencies in each folder (backend && frontend)
+```sh
+$ npm install
+```
+2. Start server
+```sh
+// qover-car-insurance/backend/
 $ npm run start
+```
+3. Inject default data
+```sh
+$ npm run injectData
 ```
 5. Start client
 ```sh
-qover-car-insurance/frontend/
+// qover-car-insurance/frontend/
 $ npm start
 ```
