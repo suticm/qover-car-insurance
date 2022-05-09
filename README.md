@@ -10,7 +10,7 @@
 1. Start server
 ```sh
 $ cd backend
-$ docker-compose --env-file ./dev.env up -d --build
+$ docker-compose --env-file ./compose.env up -d --build
 ```
 2. Inject default data in db
 ```sh
