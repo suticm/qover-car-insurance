@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect('mongodb://localhost:27017/CarInsurance')
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log('inserting cars into db...');
     mongoose.connection.db
@@ -36,6 +36,7 @@ mongoose
       .finally(() => process.exit(0));
   })
   .catch(() => {
+    console.log(process.env.MONGO_URL);
     console.log('mongoose connection failed');
     process.exit(1);
   });
