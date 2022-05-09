@@ -2,6 +2,15 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type CarDocument = Car & Document;
 
+export class Restriction {
+  @Prop()
+  name: string;
+  @Prop()
+  value: string;
+}
+
+const RestrictionSchema = SchemaFactory.createForClass(Restriction);
+
 @Schema()
 export class Car {
   @Prop({
@@ -22,10 +31,9 @@ export class Car {
   universalPercentageCoefficient: number;
 
   @Prop({
-    required: true,
-    min: 18,
+    type: [RestrictionSchema],
   })
-  minAgeRestriction: number;
+  restrictions: Restriction[];
 }
 
 export const CarSchema = SchemaFactory.createForClass(Car);

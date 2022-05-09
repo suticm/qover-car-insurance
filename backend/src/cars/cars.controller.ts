@@ -1,14 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  UseGuards,
-  ConflictException,
-  NotFoundException,
-  BadRequestException,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -49,18 +39,6 @@ export class CarsController {
     return this.carsService.create(createCarDto);
   }
 
-  @Post('/offers')
-  @ApiOperation({ summary: 'Create insurance offer' })
-  @ApiResponse({
-    status: 201,
-    description: 'The offer has been successfully created.',
-  })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  offer(@Body() carOfferInputDto: CarOfferInputDto) {
-    return this.carsService.offer(carOfferInputDto);
-  }
-
   @Get(':id')
   @ApiOperation({ summary: 'Get a car by id' })
   @ApiResponse({
@@ -75,5 +53,17 @@ export class CarsController {
   @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.carsService.findOne(id);
+  }
+
+  @Post('/offers')
+  @ApiOperation({ summary: 'Create insurance offer' })
+  @ApiResponse({
+    status: 201,
+    description: 'The offer has been successfully created.',
+  })
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  offer(@Body() carOfferInputDto: CarOfferInputDto) {
+    return this.carsService.offer(carOfferInputDto);
   }
 }

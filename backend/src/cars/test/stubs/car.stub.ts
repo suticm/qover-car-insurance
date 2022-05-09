@@ -5,6 +5,6 @@ export const carStub = (): Car => {
     manufacturer: 'BMW',
     globalPrice: 150,
     universalPercentageCoefficient: 1.3,
-    minAgeRestriction: 18,
+    restrictions: [],
   };
 };

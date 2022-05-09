@@ -55,7 +55,7 @@ describe('CarsController', () => {
           globalPrice: carStub().globalPrice,
           universalPercentageCoefficient:
             carStub().universalPercentageCoefficient,
-          minAgeRestriction: carStub().minAgeRestriction,
+          restrictions: carStub().restrictions,
         };
         car = await controller.create(createCarDto);
       });

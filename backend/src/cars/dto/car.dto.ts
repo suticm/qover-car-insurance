@@ -1,21 +1,23 @@
+import { Restriction } from '../schemas/car.schema';
+
 export class CarDto {
   id: string;
   manufacturer: string;
   globalPrice: number;
   universalPercentageCoefficient: number;
-  minAgeRestriction: number;
+  restrictions: Restriction[];
 
   constructor(
     id: string,
     manufacturer: string,
     globalPrice: number,
     universalPercentageCoefficient: number,
-    minAgeRestriction: number,
+    restrictions: Restriction[],
   ) {
     this.id = id;
     this.manufacturer = manufacturer;
     this.globalPrice = globalPrice;
     this.universalPercentageCoefficient = universalPercentageCoefficient;
-    this.minAgeRestriction = minAgeRestriction;
+    this.restrictions = restrictions;
   }
 }

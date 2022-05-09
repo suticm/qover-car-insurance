@@ -1,13 +1,11 @@
 import {
   ArgumentsHost,
-  BadRequestException,
   Catch,
   ExceptionFilter,
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { HttpExceptionResponse } from './interfaces/http-exception-response.interface';
 import { MongoError } from 'mongodb';
 
 @Catch()
@@ -24,12 +22,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       status = exception.getStatus();
       errorResponse = exception.getResponse();
 
-      if (status === HttpStatus.BAD_REQUEST) {
-        errorMessage = errorResponse.message[0];
-      } else {
-        errorMessage =
-          (errorResponse as HttpExceptionResponse).error || exception.message;
-      }
+      errorMessage = errorResponse.message;
     } else if (exception instanceof MongoError) {
       switch (exception.code) {
         case 11000:

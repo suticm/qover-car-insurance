@@ -5,11 +5,9 @@ import { CreateCarDto } from './dto/create-car.dto';
 import { Car, CarDocument } from './schemas/car.schema';
 import { CarOfferInputDto } from './dto/car-offer-input.dto';
 import { CarOfferRejectDto } from './dto/car-offer-reject.dto';
-import { CarOfferDto } from './dto/car-offer.dto';
-import { GlobalOffer } from './entities/global-offer.entity';
-import { UniversalOffer } from './entities/universal-offer.entity';
-import { carOfferConstants } from '../constants';
 import { CarDto } from './dto/car.dto';
+import { RestrictionFactory } from './offer/validators/restriction-factory';
+import { getOffer } from '../cars/offer';
 
 @Injectable()
 export class CarsService {
@@ -36,7 +34,7 @@ export class CarsService {
       createdCar.manufacturer,
       createdCar.globalPrice,
       createdCar.universalPercentageCoefficient,
-      createdCar.minAgeRestriction,
+      createdCar.restrictions,
     );
   }
 
@@ -46,44 +44,10 @@ export class CarsService {
       return new CarOfferRejectDto('Manufacturer does not exist');
     }
 
-    if (carOfferInputDto.driverAge < car.minAgeRestriction) {
-      return new CarOfferRejectDto(
-        'Sorry! We can not accept this particular risk.',
-        car.minAgeRestriction,
-      );
-    }
+    car.toObject().restrictions.forEach((restriction) => {
+      RestrictionFactory(restriction)(carOfferInputDto);
+    });
 
-    return new CarOfferDto(
-      new GlobalOffer(
-        +car.globalPrice.toFixed(2),
-        carOfferConstants.maximumDurationTravel,
-        carOfferConstants.medicalExpensesReimbursement,
-        carOfferConstants.personalAssistanceAbroad,
-        carOfferConstants.travelAssistanceAbroad,
-        carOfferConstants.coverageDuration,
-      ),
-      new UniversalOffer(
-        calculateUniversalOfferPrice(
-          car.globalPrice,
-          car.universalPercentageCoefficient,
-          carOfferInputDto.purchasePrice,
-        ),
-        carOfferConstants.maximumDurationTravel,
-        carOfferConstants.medicalExpensesReimbursement,
-        carOfferConstants.personalAssistanceAbroad,
-        carOfferConstants.travelAssistanceAbroad,
-        carOfferConstants.coverageDuration,
-      ),
-    );
+    return getOffer(car, carOfferInputDto.purchasePrice);
   }
-}
-
-function calculateUniversalOfferPrice(
-  globalPrice: number,
-  universalPercentageCoefficient: number,
-  purchasePrice: number,
-) {
-  const universalPrice =
-    purchasePrice * universalPercentageCoefficient + globalPrice;
-  return +universalPrice.toFixed(2);
 }

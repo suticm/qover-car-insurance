@@ -62,7 +62,7 @@ describe('CarsController', () => {
         globalPrice: carStub().globalPrice,
         universalPercentageCoefficient:
           carStub().universalPercentageCoefficient,
-        minAgeRestriction: carStub().minAgeRestriction,
+        restrictions: carStub().restrictions,
       };
 
       const response = await request(httpServer)

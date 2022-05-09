@@ -12,19 +12,46 @@ mongoose
           manufacturer: 'AUDI',
           globalPrice: 250,
           universalPercentageCoefficient: 0.3,
-          minAgeRestriction: 18,
+          restrictions: [
+            {
+              name: 'minAge',
+              value: 18,
+            },
+            {
+              name: 'maxAge',
+              value: 75,
+            },
+          ],
         },
         {
           manufacturer: 'BMW',
           globalPrice: 150,
           universalPercentageCoefficient: 0.4,
-          minAgeRestriction: 18,
+          restrictions: [
+            {
+              name: 'minAge',
+              value: 18,
+            },
+            {
+              name: 'maxAge',
+              value: 75,
+            },
+          ],
         },
         {
           manufacturer: 'PORSCHE',
           globalPrice: 500,
           universalPercentageCoefficient: 0.7,
-          minAgeRestriction: 25,
+          restrictions: [
+            {
+              name: 'minAge',
+              value: 25,
+            },
+            {
+              name: 'maxAge',
+              value: 75,
+            },
+          ],
         },
       ])
       .then(() => {
@@ -35,8 +62,8 @@ mongoose
       })
       .finally(() => process.exit(0));
   })
-  .catch(() => {
-    console.log(process.env.MONGO_URL);
+  .catch((e) => {
+    console.log(e);
     console.log('mongoose connection failed');
     process.exit(1);
   });

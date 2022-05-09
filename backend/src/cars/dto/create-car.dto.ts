@@ -1,5 +1,6 @@
-import { IsInt, IsNumber, IsString, Min } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { Restriction } from '../schemas/car.schema';
 
 export class CreateCarDto {
   @ApiProperty({
@@ -20,12 +21,6 @@ export class CreateCarDto {
   @IsNumber()
   universalPercentageCoefficient: number;
 
-  @ApiProperty({
-    example: 21,
-    minimum: 18,
-    description: 'Minimum age restriction of a driver',
-  })
-  @IsInt()
-  @Min(18)
-  minAgeRestriction: number;
+  @ApiProperty()
+  restrictions: Restriction[];
 }
